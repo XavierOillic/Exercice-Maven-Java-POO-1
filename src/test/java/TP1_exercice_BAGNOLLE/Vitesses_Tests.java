@@ -31,7 +31,6 @@ public class Vitesses_Tests {
 		moteur3.seTrainer();
 		assertEquals(0, moteur3.vitesseDouce);
 	}
-	
 
 }
 
