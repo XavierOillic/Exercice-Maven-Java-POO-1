@@ -34,6 +34,7 @@ public class Moteurs {
 		}
 	}
 	
+	
 	public void seTrainer () {
 		if (enRoute == true) {
 			vitesseDouce = 40;

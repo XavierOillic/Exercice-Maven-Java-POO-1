@@ -34,7 +34,6 @@ public class Vehicule {
 		return "===> "+enRoute+" ; "+12+" ; "+6+" ; "+20;
 		
 	}
-	
 }
 
 	
