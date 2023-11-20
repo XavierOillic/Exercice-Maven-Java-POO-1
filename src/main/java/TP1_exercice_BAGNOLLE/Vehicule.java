@@ -9,31 +9,34 @@ public class Vehicule {
 	public int annee;
 	public int portes;
 	public int roues;
+	//ATTTRIBUTS ou CARACTERISTIQUES
+	public Moteur moteur; //= new Moteur(true, 10, 20, 200);// j'entre dans les attributs de vehicule la CLAS MOTEUR 
+	// IL N'Y A QU'UN MOTEUR dans lon vehicule.
 	
-	public Moteurs moto; // Dans vehicule, je crée une INSTANCE de MOTEUR dans VEHICULE.
-	public Moteurs camion; // Dans vehicule, je crée une INSTANCE de MOTEUR dans VEHICULE.
-	
-	public Moteurs mobylette;
-	Moteurs mobyletteTest = new Moteurs(on, 10, 30, 35);
-	
-	Vehicule (boolean on, boolean electric, String marque, String couleur, int annee, int portes, int roues ) {
+	Vehicule (Moteur moteur, boolean on, boolean electric, String marque, String couleur, int annee, int portes, int roues ) {
+		if (marque != null || couleur != null) {
+			if (marque == "" || couleur == "") {
+				throw new IllegalArgumentException(marque);
+			}
+		}
 		this.on = on;
 		this.electric = electric;
 		this.marque = marque;
 		this.couleur = couleur;
 		this.annee = annee;
-		this.roues = portes;
-		this.portes = roues;
-	}	
+		this.roues = roues;
+		this.portes = portes;
+		this.moteur = moteur;
+	}
 	
 	public String getInfos () {
-		return " ===> "+on+" ; "+electric+" ; "+marque+" ; "+couleur+" ; "+annee+" ; "+portes+" ; "+roues;
+		if (moteur != null) {
+	return moteur.vitesse+" ; "+moteur.vitesseMax+" ; "+moteur.vitesseDouce+" ; "+marque+" ; "+couleur+" ; "+" ; "+annee+" ; "+" ; portes :"+portes;
+	} else {
+		return marque+" ; "+couleur+" ; "+" ; "+annee+" ; "+" ; portes :"+portes;
+		}
 	}
 	
-	public static String getinfosMob(boolean enRoute, Integer vitesse, Integer vitesseDouce, Integer vitesseMax) {
-		return "===> "+enRoute+" ; "+12+" ; "+6+" ; "+20;
-		
-	}
 	
 }
 

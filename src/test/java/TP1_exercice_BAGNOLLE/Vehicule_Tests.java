@@ -9,7 +9,8 @@ public class Vehicule_Tests {
 	
 	@Test
 	void testVehicule () {
-		Vehicule vehiculeNew = new Vehicule(true, true, "Coccinelle", "rouge", 1970, 6, 4);
+		Moteur moteurTest = new Moteur(true, 20, 50, 130);
+		Vehicule vehiculeNew = new Vehicule(moteurTest, true, true, "Coccinelle", "rouge", 1970, 6, 4);
 		// en declarant les THIS dans la CLASS, je n'ai plus à la faire ici.		
 		/*vehiculeNew.on = true;
 		vehiculeNew.electric = true;
@@ -27,16 +28,51 @@ public class Vehicule_Tests {
 	
 	@Test
 	void testMotoCamion () {
-// en declarant les THIS dans la CLASS, je n'ai plus à la faire ici.
-		Vehicule moto = new Vehicule(true, true, "Coccinelle", "rouge", 1970, 6, 4);
-		Moteurs motoMoteur = new Moteurs(true, 120, 20, 230);
+// En déclarant le MOTEUR dans les ATTRIBUTS, ET dans son CONSTRUCTEUR, je peux le déclarer ici grace à une Nouvelle INSTANCE.
+		Moteur moteurTestMotoCamion = new Moteur(true, 80, 20, 280); //Le new moteur me permet de donner des valeurs distinctes aux deux tests.
 		
-		Vehicule camion = new Vehicule(true, true, "Coccinelle", "rouge", 1970, 6, 4);
-		Moteurs camionMoteur = new Moteurs(true, 80, 20, 110);
+		Vehicule moto = new Vehicule(moteurTestMotoCamion, true, true, "Harley", "Noire", 1989, 0, 2);
+		moto.moteur.accelerer();// C'est la meme Instanciation de moteur que pour le camion
+		
+		Vehicule camion = new Vehicule(moteurTestMotoCamion, true, true, "Truck", "Verte", 2000, 4, 8);
+		camion.moteur.accelerer(); //C'est la meme Instanciation de moteur que pour le camion
 		
 		System.out.print("NIA NIA NIA !!!");
 		
 		}
+	
+	@Test
+	void testMoteur2vehicule() {
+		Moteur moteurTrottF1 = new Moteur(true, 90, 20, 230); // Une SEULE INSTANCE MOTEUR POUR LES DEUX F1 et TROTT
+		
+		Vehicule trottinette = new Vehicule(moteurTrottF1, true, true, "Trott","Arc-en-ciel", 2020, 0, 2);
+		Vehicule f1 = new Vehicule(moteurTrottF1, true, true, "Formule 1", "Rouge", 2023, 0, 4);
+		
+		//Moteur moteurTest = new Moteur(true, 20, 10, 25);
+		
+		trottinette.moteur.accelerer();
+		f1.moteur.accelerer();
+		
+		 System.out.println("Les deux vehicule F1 et Trott partagent le même moteur.");
+ 	}
+	@Test
+	void testMoteurMoteur() {
+		Vehicule vtt = new Vehicule(new Moteur(true, 15, 30, 40), true, true, "bla", "blabla", 10, 20, 30);
+		Vehicule gravel = new Vehicule(new Moteur(true, 10, 15, 30), true, true, "bla", "blabla", 10, 20, 30);
+		
+		gravel.moteur.accelerer(); // une instance MOTEUR
+		vtt.moteur.accelerer(); // une AUTRE INSTANCE MOTEUR.
+		
+	}
+	
+	@Test 
+	void getInfosTest () {
+		//Moteur moteurTestInfo = new Moteur(true, 10, 20, 30);
+		Vehicule vehiculeTestInfo = new Vehicule (new Moteur(true, 10, 10, 20), true, true, "blabla", "blabla", 1970, 6, 4);
+		String expected = vehiculeTestInfo.getInfos();
+		assertEquals(expected, vehiculeTestInfo.getInfos());
+		//assertEquals("Moteur; true; true; 'blabla'; 'blabla';1970; 6; 4", vehiculeTestInfo.getInfos());
+	}
 	
 	
  }
