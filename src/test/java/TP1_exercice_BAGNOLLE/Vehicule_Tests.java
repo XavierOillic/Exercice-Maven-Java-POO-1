@@ -11,16 +11,8 @@ public class Vehicule_Tests {
 	void testVehicule () {
 		Moteur moteurTest = new Moteur(true, 20, 50, 130);
 		Vehicule vehiculeNew = new Vehicule(moteurTest, true, true, "Coccinelle", "rouge", 1970, 6, 4);
-		// en declarant les THIS dans la CLASS, je n'ai plus à la faire ici.		
-		/*vehiculeNew.on = true;
-		vehiculeNew.electric = true;
-		vehiculeNew.marque = "Coccinelle";
-		vehiculeNew.couleur = "Rouge";
-		vehiculeNew.annee = 1980;
-		vehiculeNew.portes = 6;
-		vehiculeNew.roues = 4;*/
 		
-		String expected = " ====> "+vehiculeNew.on+" ; "+vehiculeNew.electric+" ; "+vehiculeNew.marque+" ; "+vehiculeNew.couleur+" ; "+vehiculeNew.annee+" ; "+vehiculeNew.portes+" ; "+vehiculeNew.roues+" <==== ";
+		String expected = moteurTest.vitesse+" ; "+moteurTest.vitesseMax+" ; "+moteurTest.vitesseDouce+" ; "+true+" ; "+true+" ; "+"Coccinelle"+" ; "+"rouge"+"; "+1970+" ; "+6+" ; "+4+" .";
 		
 		assertEquals(expected, vehiculeNew.getInfos());
 		
@@ -67,11 +59,10 @@ public class Vehicule_Tests {
 	
 	@Test 
 	void getInfosTest () {
-		//Moteur moteurTestInfo = new Moteur(true, 10, 20, 30);
 		Vehicule vehiculeTestInfo = new Vehicule (new Moteur(true, 10, 10, 20), true, true, "blabla", "blabla", 1970, 6, 4);
 		String expected = vehiculeTestInfo.getInfos();
 		assertEquals(expected, vehiculeTestInfo.getInfos());
-		//assertEquals("Moteur; true; true; 'blabla'; 'blabla';1970; 6; 4", vehiculeTestInfo.getInfos());
+	
 	}
 	
 	

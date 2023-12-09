@@ -8,19 +8,40 @@ public class Moteur {
 	public Integer vitesse;
 	public Integer vitesseDouce;
 	public Integer vitesseMax;
+	public Moteur moteur;
 	
 	//public Moteur motoMoteur;
 	//public Moteur camionMoteur;
+	public Moteur (Moteur moteur) {
+		if (moteur == null) {
+			throw new IllegalArgumentException();
+		}
+		this.moteur = moteur;
+	}
 	
-	Moteur (boolean enRoute, Integer vitesse, Integer vitesseDouce, Integer vitesseMax) {
+	public Moteur (boolean enRoute) {
+		this.enRoute = enRoute;
+	}
+	
+	public Moteur(boolean enRoute, Integer vitesse) {
+		this(enRoute);
+		this.vitesse = vitesse;
+	}
+	
+	public Moteur(boolean enRoute, Integer vitesse, Integer vitesseDouce) {
+		this(enRoute, vitesse);
+		this.vitesseDouce = vitesseDouce;
+	}
+	
+	public Moteur (boolean enRoute, Integer vitesse, Integer vitesseDouce, Integer vitesseMax) {
+		this(enRoute, vitesse, vitesseDouce);
 		
 		if (vitesse < 0 || vitesseDouce < 0 || vitesseMax < 0 ) {
 			throw new IllegalArgumentException();
 		}	// Je vérifie que mes Arguments n'ont pas de mauvaises valeurs, en tout de debut de declarations pour une nouvelle instanciation
-		this.enRoute = enRoute;
-		this.vitesse = vitesse;
-		this.vitesseDouce = vitesseDouce;
+		
 		this.vitesseMax = vitesseMax;
+
 	}
 
 	
@@ -40,7 +61,7 @@ public class Moteur {
 			if (vitesse < vitesseDouce) {
 				throw new RuntimeException("Too Slow !!!");
 			}
-			vitesse -= 10; //sinon vitesse -10.
+			vitesse -= 30; //sinon vitesse -10.
 				
 		}
 	}
